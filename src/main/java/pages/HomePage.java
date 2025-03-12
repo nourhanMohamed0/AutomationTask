@@ -11,9 +11,10 @@ public class HomePage {
     }
     private By sign_LoginButton= By.xpath("//i[@class='fa fa-lock']");
     private By homeBtn=By.xpath("//i[@class='fa fa-home']");
+    private By homeLabel=By.xpath("//div[@class='features_items']");
 
     public boolean IsUserInHomePage(){
-        return driver.findElement(homeBtn).isEnabled();
+        return driver.findElement(homeLabel).isDisplayed();
     }
     public Signup_Login clickSignupLoginBtn(){
         driver.findElement(sign_LoginButton).click();

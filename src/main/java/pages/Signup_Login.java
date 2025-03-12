@@ -16,15 +16,29 @@ public class Signup_Login {
     private By deleteAcctBtn= By.xpath("//i[@class='fa fa-trash-o']");
     private By loggedInUserLabel= By.xpath("//i[@class='fa fa-user']");
     private By accDeltedLabel= By.xpath("//h2[@data-qa='account-deleted']");
+    private By nameField=By.name("name");
+    private By emailNewUser=By.xpath("//input[@data-qa='signup-email']");
+    private By signupBtn=By.xpath("//button[@data-qa='signup-button']");
 
     public void enterLoginEmail(String email){
         driver.findElement(emailLoginField).sendKeys(email);
     }
+    public void enterSignupEmail(String email){
+        driver.findElement(emailNewUser).sendKeys(email);
+    }
+    public void enterSignupName(String name){
+        driver.findElement(nameField).sendKeys(name);
+    }
+
     public void enterPasswordField(String pass){
         driver.findElement(passwordField).sendKeys(pass);
     }
     public void clickLoginBtn(){
         driver.findElement(loginBtn).click();
+    }
+    public RegisterPage clickSignupBtn(){
+        driver.findElement(signupBtn).click();
+        return new RegisterPage(driver);
     }
     public WebElement logoutBtn(){
         return driver.findElement(logoutBtn);

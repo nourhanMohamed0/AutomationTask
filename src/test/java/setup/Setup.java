@@ -8,6 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.asserts.SoftAssert;
 import pages.HomePage;
+import pages.RegisterPage;
 
 import java.time.Duration;
 
@@ -17,6 +18,7 @@ public class Setup {
     protected static String baseURL="https://automationexercise.com/";
     protected static SoftAssert softAssert;
     protected HomePage homePage;
+    protected RegisterPage registerPage;
 
     @BeforeClass
     public void beforeClass(){
