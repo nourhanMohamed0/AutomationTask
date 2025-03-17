@@ -19,6 +19,8 @@ public class Signup_Login {
     private By nameField=By.name("name");
     private By emailNewUser=By.xpath("//input[@data-qa='signup-email']");
     private By signupBtn=By.xpath("//button[@data-qa='signup-button']");
+    private By loginForm=By.cssSelector(".login-form");
+    private By errorMsgLabel=By.xpath("//p[@style='color: red;']");
 
     public void enterLoginEmail(String email){
         driver.findElement(emailLoginField).sendKeys(email);
@@ -51,5 +53,11 @@ public class Signup_Login {
     }
     public WebElement getAccDeletedLabel(){
         return driver.findElement(accDeltedLabel);
+    }
+    public WebElement getLoginLabel(){
+        return driver.findElement(loginForm);
+    }
+    public WebElement getErrorMsgLabel(){
+        return driver.findElement(errorMsgLabel);
     }
 }
