@@ -25,8 +25,14 @@ public class Signup_Login {
     public void enterLoginEmail(String email){
         driver.findElement(emailLoginField).sendKeys(email);
     }
+    public void clearLoginEmail(){
+        driver.findElement(emailLoginField).clear();
+    }
     public void enterSignupEmail(String email){
-        driver.findElement(emailNewUser).sendKeys(email);
+       driver.findElement(emailNewUser).sendKeys(email);
+    }
+    public WebElement getSignupEmail(){
+       return driver.findElement(emailNewUser);
     }
     public void enterSignupName(String name){
         driver.findElement(nameField).sendKeys(name);
@@ -34,6 +40,9 @@ public class Signup_Login {
 
     public void enterPasswordField(String pass){
         driver.findElement(passwordField).sendKeys(pass);
+    }
+    public void clearPasswordField(){
+        driver.findElement(passwordField).clear();
     }
     public void clickLoginBtn(){
         driver.findElement(loginBtn).click();
