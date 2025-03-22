@@ -28,6 +28,9 @@ public class Signup_Login {
     public void clearLoginEmail(){
         driver.findElement(emailLoginField).clear();
     }
+    public WebElement getLoginEmail(){
+       return driver.findElement(emailLoginField);
+    }
     public void enterSignupEmail(String email){
        driver.findElement(emailNewUser).sendKeys(email);
     }

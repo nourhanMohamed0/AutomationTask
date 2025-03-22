@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -50,38 +51,18 @@ public class LoginTest extends Setup{
             homePage.getLogoutBtn().click();
             wait.until(ExpectedConditions.visibilityOf(signupLogin.getLoginLabel()));
             softAssert.assertTrue(signupLogin.getLoginLabel().isDisplayed());
-            softAssert.assertAll();
+
         }
-        @Test
-    public void TC4_CheckInvalidEmailFormat(){
-            String filePath = "InvalidMailFormatSignup.xlsx";
-            try {
-                List<String> InvalidMailFormat= new ArrayList<>();
-                List<String> errorMsgList= new ArrayList<>();
-                //Opens the file in read mode.
-                FileInputStream file=new FileInputStream(filePath);
-                //creates a workbook instance for .xlsx files
-                Workbook workbook=new XSSFWorkbook(file);
-                //accesses the first sheet in the Excel file
-                Sheet sheet= workbook.getSheetAt(0);
-                //loops through the rows (skipping the header)
-                for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-                    Row row=sheet.getRow(i);
-                    InvalidMailFormat.add(row.getCell(0).getStringCellValue());
-                    errorMsgList.add(row.getCell(1).getStringCellValue());
-                }
+        @Test(dataProvider = "invalidMail",dataProviderClass=Utils.TestData.class)
+    public void TC4_CheckInvalidEmailFormat(String invalidMail,String errMsg){
                 signupLogin=homePage.clickSignupLoginBtn();
-                for (int i = 0; i < sheet.getLastRowNum(); i++) {
-                    signupLogin.enterLoginEmail(InvalidMailFormat.get(i));
-                    signupLogin.enterPasswordField("123456");
+                    signupLogin.enterLoginEmail(invalidMail);
+                signupLogin.enterPasswordField("123456");
                     signupLogin.clickLoginBtn();
-                    softAssert.assertEquals(signupLogin.getSignupEmail().getAttribute("validationMessage"),errorMsgList.get(i));
+                    softAssert.assertEquals(signupLogin.getLoginEmail().getAttribute("validationMessage"),errMsg);
                     signupLogin.clearPasswordField();
                     signupLogin.clearLoginEmail();
-                }
-                }catch(IOException e){
-                System.out.println(e.toString());
-            }
+                softAssert.assertAll();
         }
     }
 
